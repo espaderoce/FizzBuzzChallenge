@@ -6,8 +6,13 @@ namespace FizzBuzz.Req2
     {
         static void Main(string[] args)
         {
+            SolvePrintReq2(1, 100);
+        }
+
+        public static void SolvePrintReq2(int start, int end)
+        {
             TwistedFB fizzBuzzL = new TwistedFB();
-            List<string> result = fizzBuzzL.RangeFizzBuzz(1, 100);
+            List<string> result = fizzBuzzL.RangeFizzBuzz(start, end);
             result.ForEach(x => Console.WriteLine(x));
         }
     }
