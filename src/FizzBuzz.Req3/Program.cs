@@ -11,10 +11,12 @@ namespace FizzBuzz.Req3
 
         public static void SolvePrintReq2(int start,int end, Dictionary<int,string> tokens)
         {
-            TwistedFB fizzBuzzL = new TwistedFB();
-            fizzBuzzL.SetTokens(tokens);
-            List<string> result = fizzBuzzL.RangeFizzBuzz(start, end);
-            result.ForEach(x => Console.WriteLine(x));
+            TwistedFB fizzBuzzL = new TwistedFB(tokens);
+            IEnumerable<string> result = fizzBuzzL.RangeFizzBuzz(start, end);
+            foreach (string item in result)
+            {
+                Console.WriteLine(item);
+            }
         }
 
     }

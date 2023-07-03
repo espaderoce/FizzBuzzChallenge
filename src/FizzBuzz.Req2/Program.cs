@@ -12,8 +12,11 @@ namespace FizzBuzz.Req2
         public static void SolvePrintReq2(int start, int end)
         {
             TwistedFB fizzBuzzL = new TwistedFB();
-            List<string> result = fizzBuzzL.RangeFizzBuzz(start, end);
-            result.ForEach(x => Console.WriteLine(x));
+            IEnumerable<string> result = fizzBuzzL.RangeFizzBuzz(start, end);
+            foreach (string item in result)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

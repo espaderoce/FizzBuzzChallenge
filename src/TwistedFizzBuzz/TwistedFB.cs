@@ -11,6 +11,10 @@ namespace TwistedFizzBuzz
         {
             Tokens = new Dictionary<int, string>() { { 3, "Fizz" }, { 5, "Buzz" } };
         }
+        public TwistedFB(Dictionary<int, string> tokens)
+        {
+            Tokens = tokens;
+        }
         public void SetTokens(Dictionary<int, string> tokens)
         {
             Tokens = tokens;
@@ -20,31 +24,24 @@ namespace TwistedFizzBuzz
         /// </summary>
         /// <param name="start">from this value</param>
         /// <param name="end">to this value</param>
-        public List<string> RangeFizzBuzz(int start, int end)
+        public IEnumerable<string> RangeFizzBuzz(int start, int end)
         {
-            List<string> list = new List<string>();
             for (int i = start; i <= end; i++)
             {
-                list.Add(RangeFizzBuzz(i, Tokens));
-                
+                yield return RangeFizzBuzz(i, Tokens);
             }
-            return list;
-
         }
         /// <summary>
         /// Generate FizzBuzz, This works with a non-sequential values, example: [-5, 6, 300, 12, 15]
         /// </summary>
         /// <param name="numbers"> Array of number </param>
-        public List<string> RangeFizzBuzz(int[] numbers)
+        public IEnumerable<string> RangeFizzBuzz(int[] numbers)
         {
-            List<string> list = new List<string>();
             foreach (int i in numbers)
             {
-
-                list.Add(RangeFizzBuzz(i, Tokens));
+                yield return RangeFizzBuzz(i, Tokens);
 
             }
-            return list;
         }
 
         /// <summary>
@@ -71,21 +68,19 @@ namespace TwistedFizzBuzz
                 return value;
         }
 
-        public List<string> RangeFizzBuzz(FizzBuzzToken data, int start = 1, int end = 100)
+        /// <summary>
+        /// Receive a generated token from an API.
+        /// </summary>
+        /// <param name="data"> The generated Token</param>
+        /// <param name="start">The number to start the iteration</param>
+        /// <param name="end">The number to end the iteration</param>
+        /// <returns></returns>
+        public IEnumerable<string> RangeFizzBuzz(FizzBuzzToken data, int start = 1, int end = 100)
         {
-            List<string> list = new ();
             for (int i = start; i <= end; i++)
             {
-                if (i % data.Multiple == 0)
-                {
-                    list.Add(data.Word);
-                }
-                else
-                {
-                    list.Add(i.ToString());
-                }
+                yield return RangeFizzBuzz(i, new Dictionary<int, string> { { data.Multiple, data.Word } });
             }
-            return list;
         }
 
         /// <summary>

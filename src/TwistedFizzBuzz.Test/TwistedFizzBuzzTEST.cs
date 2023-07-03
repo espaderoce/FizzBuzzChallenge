@@ -12,7 +12,7 @@ namespace TwistedFizzBuzz.Test
         {
             List<string> expectedResult = new List<string>()
             {"1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"};
-            List<string> result = fizzBuzz.RangeFizzBuzz(1, 15);
+            IEnumerable<string> result = fizzBuzz.RangeFizzBuzz(1, 15);
             Assert.Equal(expectedResult, result);
         }
 
@@ -22,7 +22,7 @@ namespace TwistedFizzBuzz.Test
             List<string> expectedResult = new List<string>()
             {"Buzz","Fizz","FizzBuzz","Fizz","FizzBuzz"};
             int[] inputs = new int[] { -5, 6, 300, 12, 15 };
-            List<string>  result = fizzBuzz.RangeFizzBuzz(inputs);
+            IEnumerable<string>  result = fizzBuzz.RangeFizzBuzz(inputs);
             Assert.Equal(expectedResult, result);
         }
 
@@ -44,7 +44,7 @@ namespace TwistedFizzBuzz.Test
         {
             FizzBuzzToken generatedToken = new FizzBuzzToken() {Multiple = inlineMultiple, Word = inlineWord };
             List<string> expectedResult = new List<string>() {inlineExpected};
-            List<string> result = fizzBuzz.RangeFizzBuzz(generatedToken, generatedToken.Multiple, generatedToken.Multiple);
+            IEnumerable<string> result = fizzBuzz.RangeFizzBuzz(generatedToken, generatedToken.Multiple, generatedToken.Multiple);
             Assert.Equal(expectedResult,result);
         }
 
